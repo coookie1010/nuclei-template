@@ -71,6 +71,6 @@ requests:
 
     matchers:
       - type: dsl
+        name: BlindSQLi
         dsl: 
-          - 'duration>=5'
-    
+          - 'duration >= 5'
