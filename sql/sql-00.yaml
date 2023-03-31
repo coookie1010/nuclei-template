@@ -1,10 +1,9 @@
 id: oscuridad-sql
-
 info:
   name: Blind SQL Injection time based detection of sql backend
-  author: oscuridad
+  author: oscuridad1010
   severity: High
-  tags: sql,bsql
+  tags: sql0
 
 requests:
   - method: GET
@@ -17,7 +16,9 @@ requests:
         - "%22%22|0;#"
         - "%22"
         - "/') OR 1 = 1 -- ];"
-        
+        - "%E2%84%A2%22"
+        - "%E2%84%A2%27"
+
     stop-at-first-match: true
     fuzzing:
       - part: query

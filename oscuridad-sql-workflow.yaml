@@ -1,0 +1,12 @@
+id: oscuridadsql-workflow
+
+info:
+  name: Workflow for sql injection detection
+  author: oscuridad1010
+  description: A simple workflow that runs all blind sql injection related nuclei templates on a given target.
+
+workflows:
+  - template: oscuridad/sql/sql-00.yaml
+  - template: oscuridad/sql/sql-01.yaml
+  - template: oscuridad/sql/sql-02.yaml
+      
