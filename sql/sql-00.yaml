@@ -222,7 +222,8 @@ requests:
           - "\\[(Virtuoso Driver|Virtuoso iODBC Driver)\\]\\[Virtuoso Server\\]"
           # HQL
           - "org\\.hibernate\\.QueryException:"
-          - "<EOF>"
+          - "org\\.hibernate\\.exception\\.SQLGrammarException"
+          - "mismatched input '<EOF>'"
         condition: or
 
     extractors:
@@ -496,7 +497,9 @@ requests:
           - "\\[(Virtuoso Driver|Virtuoso iODBC Driver)\\]\\[Virtuoso Server\\]"
       
       - type: regex
-        name: HQL
+        name: HQLSQL
         regex:
           - "org\\.hibernate\\.QueryException:"
-          - "<EOF>"
+          - "org\\.hibernate\\.exception\\.SQLGrammarException"
+          - "mismatched input '<EOF>'"
+
