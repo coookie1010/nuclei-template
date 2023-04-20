@@ -18,6 +18,7 @@ requests:
         - "/') OR 1 = 1 -- ];"
         - "%E2%84%A2%22"
         - "%E2%84%A2%27"
+        - "()"
 
     stop-at-first-match: true
     fuzzing:
@@ -220,6 +221,9 @@ requests:
           - "SQ200: No table "
           - "Virtuoso S0002 Error"
           - "\\[(Virtuoso Driver|Virtuoso iODBC Driver)\\]\\[Virtuoso Server\\]"
+          # HQL
+          - "org\\.hibernate\\.QueryException:"
+          - "<EOF>"
         condition: or
 
     extractors:
@@ -491,3 +495,9 @@ requests:
           - "SQ200: No table "
           - "Virtuoso S0002 Error"
           - "\\[(Virtuoso Driver|Virtuoso iODBC Driver)\\]\\[Virtuoso Server\\]"
+      
+      - type: regex
+        name: HQL
+        regex:
+          - "org\\.hibernate\\.QueryException:"
+          - "<EOF>"
