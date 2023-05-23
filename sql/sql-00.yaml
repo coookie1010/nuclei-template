@@ -224,6 +224,7 @@ requests:
           - "org\\.hibernate\\.QueryException:"
           - "org\\.hibernate\\.exception\\.SQLGrammarException"
           - "mismatched input '<EOF>'"
+          - '<EOF>'
         condition: or
 
     extractors:
@@ -502,4 +503,5 @@ requests:
           - "org\\.hibernate\\.QueryException:"
           - "org\\.hibernate\\.exception\\.SQLGrammarException"
           - "mismatched input '<EOF>'"
+          - '<EOF>'
 
